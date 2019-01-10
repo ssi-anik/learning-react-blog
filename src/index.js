@@ -1,12 +1,31 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware } from "redux";
+import reducers from "./reducers/index";
+import "semantic-ui-css/semantic.min.css";
+import { HashRouter } from "react-router-dom";
+import axios from "axios";
+import { url } from "./config";
+import axiosMiddleware from "redux-axios-middleware";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const clients = axios.create({
+    baseURL: `${url}/api`,
+    responseType: 'json'
+})
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+let middleware = applyMiddleware(axiosMiddleware(clients));
+
+let store = createStore(
+    reducers,
+    middleware
+)
+
+ReactDOM.render(
+    <Provider store = {store}>
+        <HashRouter>
+            <App />
+        </HashRouter>
+    </Provider>, document.getElementById('root')
+);

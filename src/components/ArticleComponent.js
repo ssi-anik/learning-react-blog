@@ -16,13 +16,13 @@ export const ArticleComponent = props => {
                            color = 'red' ribbon>
                         { article.user.name }
                     </Label>
-                    <Label as = {'label'} color={'teal'} style = {{'float': 'right'}}  >Published on: {article.created_at}</Label>
+                    <Label as = {'label'} color={'teal'} style = {{'float': 'right'}}  >Published on: {article.published_at}</Label>
 
                     <Divider />
                     <p>
                         { article.content.substring(0, 800) }
                     </p>
-                    { <Header color = {'green'} as = 'h4'><Link to = {viewArticleUrl}>...See more</Link></Header>}
+                    { <Header color = {'green'} as = 'h4'><Link to = {viewArticleUrl}>...Continue reading</Link></Header>}
                     <Divider/>
                     <TagsComponent tags = {article.tags} />
                 </Segment>

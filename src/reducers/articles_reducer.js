@@ -14,6 +14,8 @@ const defaultState = fromJS({
 })
 
 export default function articles (state = defaultState, action) {
+    /*let article = state.getIn(['articles', 0]);
+    console.log(action.type, article === undefined ? '' : article.toJS());*/
     switch ( action.type ) {
         case `${GET_ALL_ARTICLES}_SUCCESS`:
         case `${GET_ALL_TAGGED_ARTICLES}_SUCCESS`:

@@ -25,7 +25,10 @@ export const ArticlesComponent = props => {
 
     return (
         <div>
-            <PaginationComponent pagination = {pagination} />
+            <PaginationComponent
+                nextButtonClick = {props.nextButtonClick}
+                previousButtonClick = {props.previousButtonClick}
+                pagination = {pagination} />
             <Container>
                 {
                     articles.map(article => {
@@ -33,7 +36,10 @@ export const ArticlesComponent = props => {
                     })
                 }
             </Container>
-            <PaginationComponent pagination = {pagination} />
+            <PaginationComponent
+                nextButtonClick = {props.nextButtonClick}
+                previousButtonClick = {props.previousButtonClick}
+                pagination = {pagination} />
         </div>
     )
 }

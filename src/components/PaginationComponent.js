@@ -12,14 +12,14 @@ export const PaginationComponent = (props) => {
             <Grid columns = {2}>
                 <Grid.Column>
                     {
-                        <Button floated= 'left' primary disabled = {!hasPreviousPage}>
+                        <Button floated = 'left' onClick = {props.previousButtonClick} primary disabled = {!hasPreviousPage}>
                             <Icon name = 'left arrow' /> Previous
                         </Button>
                     }
                 </Grid.Column>
                 <Grid.Column>
                     {
-                        <Button floated = 'right' primary disabled = {!hasNextPage}>
+                        <Button floated = 'right' onClick = {props.nextButtonClick} primary disabled = {!hasNextPage}>
                             Next <Icon name = 'right arrow' />
                         </Button>
                     }

@@ -8,6 +8,8 @@ const defaultState = fromJS({
         per_page: 20,
         total_in_page: 0,
         total_page: 0,
+        next_page: false,
+        previous_page: false
     }
 })
 
@@ -32,7 +34,15 @@ export default function articles (state = defaultState, action) {
                         .setIn([
                             'pagination',
                             'total_page'
-                        ], action.payload.data.data.paginate.total_page);
+                        ], action.payload.data.data.paginate.total_page)
+                        .setIn([
+                            'pagination',
+                            'next_page'
+                        ], !!action.payload.data.data.paginate.next_page)
+                        .setIn([
+                            'pagination',
+                            'previous_page'
+                        ], !!action.payload.data.data.paginate.previous_page);
         default:
             return state;
     }

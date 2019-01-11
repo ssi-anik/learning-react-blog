@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Segment, Label, Header } from "semantic-ui-react";
+import { Grid, Segment, Label, Header, Divider } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 export const ArticleComponent = props => {
@@ -11,14 +11,17 @@ export const ArticleComponent = props => {
         <Grid>
             <Grid.Column width = {16}>
                 <Segment raised>
-                    <Label color = 'red' ribbon>
-                        <Link to = {userArticleUrl}>{ article.user.name + ' (' + article.created_at + ')' }</Link>
+                    <Label as = {Link}
+                           to = {userArticleUrl}
+                           color = 'red' ribbon>
+                        { article.user.name + ' (' + article.created_at + ')' }
                     </Label>
                     { tagViews }
+                    <Divider />
                     <p>
                         { article.content.substring(0, 800) }
-                        { <Link to = {viewArticleUrl}><Header color = {'green'} as = 'h4'>...See more</Header></Link>}
                     </p>
+                    { <Header color = {'green'} as = 'h4'><Link to = {viewArticleUrl}>...See more</Link></Header>}
                 </Segment>
             </Grid.Column>
         </Grid>
@@ -34,8 +37,8 @@ function renderTags (tags) {
             {
                 tags.map(tag => {
                     let tagUrl = '/tag/' + tag + '/article';
-                    return (<Label as = 'a' tag color = {'blue'}>
-                        <Link to = {tagUrl}>{tag}</Link>
+                    return (<Label as = {Link} to = {tagUrl} key = {tag} tag color = {'blue'}>
+                        {tag}
                     </Label>);
                 })
             }

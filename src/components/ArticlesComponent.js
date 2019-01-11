@@ -13,7 +13,7 @@ export const ArticlesComponent = props => {
             <Container>
                 {
                     articles.map(article => {
-                        return <ArticleComponent article = {article} />
+                        return <ArticleComponent key={article.id} article = {article} />
                     })
                 }
             </Container>

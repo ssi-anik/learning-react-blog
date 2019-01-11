@@ -8,7 +8,9 @@ class App extends Component {
         return (
             <Container>
                 <Switch>
-                    <Route path = '/' component = {ArticlesContainer}></Route>
+                    <Route exact path = '/' component = {ArticlesContainer}></Route>
+                    <Route exact path = '/tagged/:tag/article' component = { props =>
+                        <ArticlesContainer {...props} />}></Route>
                 </Switch>
             </Container>
         );

@@ -20,7 +20,7 @@ export const TagsComponent = (props) => {
                 <Label.Group tag>
                     {
                         tags.map(tag => {
-                            let tagUrl = '/tag/' + tag + '/article';
+                            let tagUrl = '/tagged/' + tag + '/article';
                             return (
                                 <Label as = {Link} to = {tagUrl} key = {tag} tag color = {'green'}>
                                     {tag}

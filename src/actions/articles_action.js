@@ -1,4 +1,5 @@
 export const GET_ALL_ARTICLES = 'get-all-articles';
+export const GET_ALL_TAGGED_ARTICLES = 'get-all-tagged-articles';
 
 export function getAllArticles (query = {}) {
     return {
@@ -15,9 +16,9 @@ export function getAllArticles (query = {}) {
     }
 }
 
-export function getTaggedAllArticles (tag, query = {}) {
+export function getAllTaggedArticles (tag, query = {}) {
     return {
-        type: GET_ALL_ARTICLES,
+        type: GET_ALL_TAGGED_ARTICLES,
         payload: {
             request: {
                 url: `/tag/${tag}/article`,

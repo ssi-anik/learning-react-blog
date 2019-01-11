@@ -1,17 +1,23 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getAllArticles, getTaggedAllArticles } from "../actions/articles_action";
+import { getAllArticles, getAllTaggedArticles } from "../actions/articles_action";
 import { ArticlesComponent } from "../components/ArticlesComponent";
 
 class ArticlesContainer extends Component {
+    constructor (props) {
+        super(props);
+        this.fetchType = 'all';
+        this.data = 'Article';
+    }
 
     componentWillMount () {
         let tag = this.props.match.params.tag;
-        console.log(tag);
         if ( tag ) {
-            let { getTaggedAllArticles } = this.props;
-            getTaggedAllArticles(tag);
+            let { getAllTaggedArticles } = this.props;
+            this.fetchType = 'tag';
+            this.data = tag;
+            getAllTaggedArticles(tag);
         } else {
             let { getAllArticles } = this.props;
             getAllArticles();
@@ -20,7 +26,9 @@ class ArticlesContainer extends Component {
 
     render () {
         let { articles, pagination } = this.props;
-        return (<ArticlesComponent articles = {articles} pagination = {pagination} />)
+        return (
+            <ArticlesComponent data = {this.data} fetchType = {this.fetchType} articles = {articles} pagination = {pagination} />
+        );
     }
 }
 
@@ -34,7 +42,7 @@ function mapStateToProps (state) {
 function mapDispatchToProps (dispatch) {
     return bindActionCreators({
         getAllArticles,
-        getTaggedAllArticles
+        getAllTaggedArticles
     }, dispatch)
 }
 

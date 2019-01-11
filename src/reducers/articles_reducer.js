@@ -1,4 +1,4 @@
-import { GET_ALL_ARTICLES } from "../actions/articles_action";
+import { GET_ALL_ARTICLES, GET_ALL_TAGGED_ARTICLES } from "../actions/articles_action";
 import { fromJS } from "immutable";
 
 const defaultState = fromJS({
@@ -16,6 +16,7 @@ const defaultState = fromJS({
 export default function articles (state = defaultState, action) {
     switch ( action.type ) {
         case `${GET_ALL_ARTICLES}_SUCCESS`:
+        case `${GET_ALL_TAGGED_ARTICLES}_SUCCESS`:
             return state.setIn([
                             'articles'
                         ], fromJS(action.payload.data.data.articles))
@@ -43,6 +44,11 @@ export default function articles (state = defaultState, action) {
                             'pagination',
                             'previous_page'
                         ], !!action.payload.data.data.paginate.previous_page);
+        case `${GET_ALL_ARTICLES}_FAIL`:
+        case `${GET_ALL_TAGGED_ARTICLES}_FAIL`:
+            return state.setIn([
+                'articles'
+            ], fromJS([]))
         default:
             return state;
     }

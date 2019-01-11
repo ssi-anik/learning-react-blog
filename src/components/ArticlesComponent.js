@@ -6,7 +6,6 @@ import { Container } from "semantic-ui-react";
 export const ArticlesComponent = props => {
     let articles = props.articles;
     let pagination = props.pagination;
-    console.log(pagination);
     return (
         <div>
             <PaginationComponent pagination = {pagination} />

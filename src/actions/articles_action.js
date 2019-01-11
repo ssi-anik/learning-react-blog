@@ -9,7 +9,7 @@ export function getAllArticles (query = {}) {
                 url: '/article',
                 method: 'get',
                 params: {
-                    ...query
+                    ...{per_page: 5}, ...query
                 }
             }
         }
@@ -24,7 +24,7 @@ export function getAllTaggedArticles (tag, query = {}) {
                 url: `/tag/${tag}/article`,
                 method: 'get',
                 params: {
-                    ...query
+                    ...{per_page: 5}, ...query
                 }
             }
         }

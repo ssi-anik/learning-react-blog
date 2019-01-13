@@ -7,20 +7,11 @@ import { NotFoundComponent } from "./NotFoundComponent";
 export const ArticlesComponent = props => {
     let articles = props.articles;
     let pagination = props.pagination;
-    let fetchType = props.fetchType;
-    let data = props.data;
+    let message = props.notFoundMessage || 'Could not find anything!';
+    let icon = props.icon;
 
     if ( articles.length === 0 ) {
-        let header;
-        switch ( fetchType.toLowerCase() ) {
-            case 'tag':
-                header = 'Cannot find anything with Tag \'' + data.toString() + '\'';
-                break;
-            default:
-                header = 'Cannot find any Article right this moment!';
-                break;
-        }
-        return <NotFoundComponent missing = {!!data} header = {header} />
+        return <NotFoundComponent icon = {icon} message = {message} />
     }
 
     return (
